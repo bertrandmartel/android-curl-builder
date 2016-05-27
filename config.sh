@@ -35,4 +35,4 @@ CURL_ARGS="--with-ssl --with-zlib --disable-ftp --disable-gopher
 BUILD_ZLIB=1
 BUILD_OPENSSL=1
 BUILD_INTERACTIVE=0
-BUILD_DEPENDENCY=( "wget1" "make" "tar" "perl" "makedepend" "autoconf" "autoreconf" )
+BUILD_DEPENDENCY=( "wget" "make" "tar" "perl" "makedepend" "autoconf" "autoreconf" )
