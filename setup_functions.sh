@@ -19,13 +19,7 @@ function os_check(){
 	esac
 
 	if [ -z "$OS" ]; then
-		read -p "OS not supported. Do you want to continue ? (y/n) " -n 1 -r
-		echo
-		if [[ ! $REPLY =~ ^[Yy]$ ]]
-		then
-			print_error "aborting"
-		    exit 1
-		fi
+		OS="LINUX"
 	fi
 }
 
