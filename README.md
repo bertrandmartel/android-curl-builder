@@ -7,7 +7,7 @@ Set of bash scripts used to cross compile curl & its dependencies for Android pl
 ## Compatibility
 
 * Linux
-* in construction : MAC OSX
+* MAC OSX
 
 Build for arm architecture only
 
@@ -54,7 +54,7 @@ The following libraries are cross compiled for Android platform :
 * perl
 * makedepend
 * autoconf
-* autoreconf
+* automake
 
 ## License
 
