@@ -56,6 +56,10 @@ The following libraries are cross compiled for Android platform :
 * autoconf
 * automake
 
+## Troubleshoot
+
+If you have any troubles / questions, please create <a hred="https://github.com/akinaru/android-curl-builder/issues/new">an issue</a>
+
 ## License
 
 ```
