@@ -64,6 +64,14 @@ case $i in
 		GLOBAL_INSTALL_DIR="${i#*=}"
 		shift # past argument=value
 		;;
+	--disable-zlib-build)
+		BUILD_ZLIB=0
+		shift # past argument=value
+		;;
+	--disable-openssl-build)
+		BUILD_OPENSSL=0
+		shift # past argument=value
+		;;
 	*)
 		# unknown option
 		;;

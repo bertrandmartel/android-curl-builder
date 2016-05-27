@@ -32,7 +32,14 @@ CURL_ARGS="--with-ssl --with-zlib --disable-ftp --disable-gopher
 	--disable-pop3 --disable-proxy --disable-rtsp --disable-smtp 
 	--disable-telnet --disable-tftp --without-gnutls --without-libidn 
 	--without-librtmp --disable-dict"
-BUILD_ZLIB=1
-BUILD_OPENSSL=1
+
+if [ -z "$BUILD_ZLIB" ]; then
+	BUILD_ZLIB=1
+fi
+
+if [ -z "$BUILD_OPENSSL" ]; then
+	BUILD_OPENSSL=1
+fi
+
 BUILD_INTERACTIVE=0
-BUILD_DEPENDENCY=( "wget" "make" "tar" "perl" "makedepend" "autoconf" "autoreconf" )
+BUILD_DEPENDENCY=( "wget" "make" "tar" "perl" "makedepend" "autoconf" "automake" )

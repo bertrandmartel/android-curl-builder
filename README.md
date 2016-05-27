@@ -32,6 +32,8 @@ Arguments:
   -openssl_install=[PATH]       specify path to openssl install directory
   -curl_install=[PATH]          specify path to curl install directory
   -global_install=[PATH]        specify path to global install directory (curl and its dependencies release will be copied to this directory)
+  --disable-zlib-build          wont build zlib if zlib install directory is specified
+  --disable-openssl-build       wont build openssl if openssl install directory is specified
   -v, --version                 show version
   -h, --help                    show help
 ```

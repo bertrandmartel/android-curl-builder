@@ -2,7 +2,7 @@
 
 function log_openssl_result(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "-----------OPENSSL CROSS COMPILED SUCCESSFULLY----------"
 	echo "| install directory : $OPENSSL_INSTALL_DIR"
 	echo "| headers directory : $OPENSSL_INSTALL_DIR/include"
@@ -13,7 +13,7 @@ function log_openssl_result(){
 
 function log_openssl_header(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "--------------------------------------------------------"
 	echo "| OPENSSL_INSTALL_DIR    : $OPENSSL_INSTALL_DIR"
 	echo "| OPENSSL_SOURCE_DIR     : $OPENSSL_SOURCE_DIR"
@@ -34,7 +34,7 @@ function log_openssl_header(){
 
 function define_openssl_install_directory(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "> set openssl install directory ..."
 	echo -ne "\x1B[0m"
 
@@ -48,12 +48,12 @@ function get_openssl(){
 
 	if [ -z "$OPENSSL_SOURCE_DIR" ]; then
 
-		echo -ne "\x1B[01;93m"
+		echo -ne "\x1B[01;32m"
 		echo "> downloading openssl ..."
 		echo -ne "\x1B[0m"
 		rm -rf $INSTALL_DIR/openssl-*
 		wget -q --show-progress -P $INSTALL_DIR $OPENSSL_TARBALL
-		TAR_FILE=`echo $OPENSSL_TARBALL | grep -oP "[^/]*$"`
+		TAR_FILE=`echo "${OPENSSL_TARBALL##*/}"`
 		tar -xzf $INSTALL_DIR/$TAR_FILE -C $INSTALL_DIR
 		rm $INSTALL_DIR/$TAR_FILE
 	fi
@@ -61,7 +61,7 @@ function get_openssl(){
 
 function build_openssl(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "> building openssl ..."
 	echo -ne "\x1B[0m"
 
@@ -118,7 +118,7 @@ function move_openssl_output(){
 
 function depend_openssl(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "--------------------------------------------------------"
 	echo "|                    OPENSSL TASK                      |"
 	echo "--------------------------------------------------------"

@@ -148,6 +148,8 @@ function show_help(){
 	echo "  -openssl_install=[PATH]       specify path to openssl install directory"
 	echo "  -curl_install=[PATH]          specify path to curl install directory"
 	echo "  -global_install=[PATH]        specify path to global install directory (curl and its dependencies release will be copied to this directory)"
+	echo "  --disable-zlib-build          wont build zlib if zlib install directory is specified"
+	echo "  --disable-openssl-build       wont build openssl if openssl install directory is specified"
 	echo "  -v, --version                 show version"
 	echo "  -h, --help                    show help"
 }

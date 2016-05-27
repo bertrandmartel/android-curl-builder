@@ -2,7 +2,7 @@
 
 function log_curl_result(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "-------------CURL CROSS COMPILED SUCCESSFULLY-----------"
 	echo "| install directory : $CURL_INSTALL_DIR"
 	echo "| headers directory : $CURL_INSTALL_DIR/usr/local/include"
@@ -13,7 +13,7 @@ function log_curl_result(){
 
 function log_curl_header(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "--------------------------------------------------------"
 	echo "| CURL_INSTALL_DIR       : $CURL_INSTALL_DIR"
 	echo "| CURL_SOURCE_DIR        : $CURL_SOURCE_DIR"
@@ -34,7 +34,7 @@ function log_curl_header(){
 
 function define_curl_install_directory(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "> set curl install directory ..."
 	echo -ne "\x1B[0m"
 
@@ -48,13 +48,13 @@ function get_curl(){
 	
 	if [ -z "$CURL_SOURCE_DIR" ]; then
 
-		echo -ne "\x1B[01;93m"
+		echo -ne "\x1B[01;32m"
 		echo "> downloading curl ..."
 		echo -ne "\x1B[0m"
 
 		rm -rf $INSTALL_DIR/curl-curl-*
 		wget -q --show-progress -P $INSTALL_DIR $CURL_TARBALL
-		TAR_FILE=`echo $CURL_TARBALL | grep -oP "[^/]*$"`
+		TAR_FILE=`echo "${CURL_TARBALL##*/}"`
 		tar -xzf $INSTALL_DIR/$TAR_FILE -C $INSTALL_DIR
 		rm $INSTALL_DIR/$TAR_FILE
 	fi
@@ -62,7 +62,7 @@ function get_curl(){
 
 function build_curl(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "> building curl ..."
 	echo -ne "\x1B[0m"
 	
@@ -85,7 +85,8 @@ function build_curl(){
 	
 	log_curl_header
 
-	autoreconf -i
+	chmod 777 buildconf
+	./buildconf
 	./configure --host="${CROSS_COMPILE}" $CURL_ARGS
 
 	make -j16
@@ -104,7 +105,7 @@ function move_curl_output(){
 
 function depend_curl(){
 
-	echo -ne "\x1B[01;93m"
+	echo -ne "\x1B[01;32m"
 	echo "--------------------------------------------------------"
 	echo "|                      CURL TASK                       |"
 	echo "--------------------------------------------------------"
