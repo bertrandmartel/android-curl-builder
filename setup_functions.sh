@@ -115,9 +115,39 @@ function log_global_vars(){
 }
 
 function print_header(){
+	echo "Android Curl Builder tool version $VERSION ($RELEASE_DATE)"
+	echo "Copyright (C) 2016 by Bertrand Martel under GPL License"
+}
 
-	echo "--------------------------------------------------------"
-	echo "|  Android Curl Builder tool version $VERSION ($RELEASE_DATE)  |"
-	echo "|  The MIT License Copyright (c) 2016 Bertrand Martel  |"
-	echo "--------------------------------------------------------"
+function check_build_dependency(){
+
+	for i in "${BUILD_DEPENDENCY[@]}"
+	do
+		:
+		command -v $i >/dev/null 2>&1 || { echo -e >&2 "\x1B[31m[ ERROR ] $i is required but it's not installed\x1B[0m"; exit 1; }
+	done
+}
+
+function show_help(){
+
+	echo "Usage : acb [ARGUMENTS...]"
+	echo "acb build curl for Android platform with its dependencies"
+	echo ""
+	echo "Example:"
+	echo "  acb -ndk=/home/user/ndk -android_platform=android-17 -global_install=/home/user/install_dir"
+	echo ""
+	echo "Arguments:"
+	echo ""
+	echo "  -ndk=[PATH]                   specify ndk directory path"
+	echo "  -android_platform=[PLATFORM]  specify target android platform (android-XX)"
+	echo "  -toolchain=[PATH]             specify path to android toolchain"
+	echo "  -zlib_src=[PATH]              specify path to zlib source directory"
+	echo "  -openssl_src=[PATH]           specify path to openssl source directory"
+	echo "  -curl_src=[PATH]              specify path to curl source directory"
+	echo "  -zlib_install=[PATH]          specify path to zlib install directory"
+	echo "  -openssl_install=[PATH]       specify path to openssl install directory"
+	echo "  -curl_install=[PATH]          specify path to curl install directory"
+	echo "  -global_install=[PATH]        specify path to global install directory (curl and its dependencies release will be copied to this directory)"
+	echo "  -v, --version                 show version"
+	echo "  -h, --help                    show help"
 }

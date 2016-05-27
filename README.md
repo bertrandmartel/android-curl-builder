@@ -1,6 +1,6 @@
-# Android Curl Builder
+# Android Curl Builder (ACB)
 
-[![License](http://img.shields.io/:license-mit-blue.svg)](LICENSE.md)
+[![License](http://badge.kloud51.com/pypi/l/html2text.svg)](LICENSE.md)
 
 Set of bash scripts used to cross compile curl & its dependencies for Android platform
 
@@ -11,116 +11,64 @@ Set of bash scripts used to cross compile curl & its dependencies for Android pl
 
 Build for arm architecture only
 
-## Quick start
-
-Having previously downloaded android-ndk is recommended but nevertheless not required (download is quite lengthy): 
+## Help
 
 ```
-export NDK_DIR=/home/user/path/to/android-ndk
-```
+Usage : acb [ARGUMENTS...]
+acb build curl for Android platform with its dependencies
 
-Set install directory (it will contain zlib, openssl & curl library + headers) :
-```
-export GLOBAL_INSTALL_DIR=/home/user/install_dir
-```
+Example:
+  acb -ndk=/home/user/ndk -android_platform=android-17 -global_install=/home/user/install_dir
 
-Launch the build :
+Arguments:
 
-```
-./build.sh
+  -ndk=[PATH]                   specify ndk directory path
+  -android_platform=[PLATFORM]  specify target android platform (android-XX)
+  -toolchain=[PATH]             specify path to android toolchain
+  -zlib_src=[PATH]              specify path to zlib source directory
+  -openssl_src=[PATH]           specify path to openssl source directory
+  -curl_src=[PATH]              specify path to curl source directory
+  -zlib_install=[PATH]          specify path to zlib install directory
+  -openssl_install=[PATH]       specify path to openssl install directory
+  -curl_install=[PATH]          specify path to curl install directory
+  -global_install=[PATH]        specify path to global install directory (curl and its dependencies release will be copied to this directory)
+  -v, --version                 show version
+  -h, --help                    show help
 ```
 
 ## Libraries built
 
-The following libraries are built :
+The following libraries are cross compiled for Android platform :
 
 * zlib
 * openssl
 * curl
 
-## Build dependency variables
+## Utilities required
 
-You can precise path to the following element if you already have them and dont want to download a new version each time you want to build curl :
-
-| build dependency element               | env path vars         |
-|----------------------------------------|-----------------------|
-| android-ndk                            | `NDK_DIR`             |
-| android toolchain (generated from ndk) | `TOOLCHAIN_DIR`       |
-| zlib                                   | `ZLIB_SOURCE_DIR`     |
-| openssl                                | `OPENSSL_SOURCE_DIR`  |
-| curl                                   | `CURL_SOURCE_DIR`     |
-
-For instance, if you want to build against your own source of openssl :
-```
-export OPENSSL_SOURCE_DIR=/home/user/openssl
-```
-
-## Build installation path variables
-
-You can set installation path for zlib, openssl, curl & all of them :
-
-| target                      |      installation path variable  |
-|-----------------------------|----------------------------------|
-| zlib                        |    `ZLIB_INSTALL_DIR`              |
-| openssl                     |    `OPENSSL_INSTALL_DIR`           |
-| curl                        |    `CURL_INSTALL_DIR`              |
-| curl & all its dependencies     |    `GLOBAL_INSTALL_DIR`            |
-
-For instance, if you want to have zlib library & headers in folder `/home/user/zlib_install` :
-```
-export ZLIB_INSTALL_DIR=/home/user/zlib_install
-```
-
-## Build against a different Android platform 
-
-To change Android platform set `TOOLCHAIN_PLATFORM` variables :
-
-```
-export TOOLCHAIN_PLATFORM=android-17
-```
-
-## More customization
-
-You can configure some parameters in `config.sh` including zlib, openssl, curl release tarball to be used, openssl & curl build args etc... :
-
-```
-DEFAULT_OS="LINUX"
-DEFAULT_INSTALL_DIR="/tmp"
-NDK_INSTALL_DEFAULT_DIR="ndk"
-NDK_LINK_LINUX="http://dl.google.com/android/repository/android-ndk-r11c-linux-x86_64.zip"
-NDK_LINK_MACOSX="http://dl.google.com/android/repository/android-ndk-r11c-darwin-x86_64.zip"
-TOOLCHAIN_DEFAULT_DIR="toolchain"
-
-if [ -z "$TOOLCHAIN_PLATFORM" ]; then
-	TOOLCHAIN_PLATFORM="android-21"
-fi
-
-CROSS_COMPILE="arm-linux-androideabi"
-ANDROID_CC="${CROSS_COMPILE}-gcc"
-ANDROID_AR="${CROSS_COMPILE}-ar"
-ANDROID_AS="${CROSS_COMPILE}-as"
-ANDROID_LD="${CROSS_COMPILE}-ld"
-ANDROID_NM="${CROSS_COMPILE}-nm"
-ANDROID_RANLIB="${CROSS_COMPILE}-ranlib"
-ZLIB_TARBALL="http://zlib.net/zlib-1.2.8.tar.gz"
-ZLIB_DEFAULT_INSTALL_DIR="zlib"
-OPENSSL_DEFAULT_INSTALL_DIR="openssl"
-OPENSSL_TARBALL="https://www.openssl.org/source/openssl-1.0.1p.tar.gz"
-ANDROID_EABI="arm-linux-androideabi-4.8"
-ANDROID_ARCH="arch-arm"
-OPENSSL_CONFIG_ARGS="shared no-ssl2 no-ssl3 no-comp no-hw no-engine"
-CURL_DEFAULT_INSTALL_DIR="curl"
-CURL_TARBALL="https://github.com/curl/curl/archive/curl-7_49_0.tar.gz"
-CURL_ARGS="--with-ssl --with-zlib --disable-ftp --disable-gopher 
-	--disable-file --disable-imap --disable-ldap --disable-ldaps 
-	--disable-pop3 --disable-proxy --disable-rtsp --disable-smtp 
-	--disable-telnet --disable-tftp --without-gnutls --without-libidn 
-	--without-librtmp --disable-dict"
-BUILD_ZLIB=1
-BUILD_OPENSSL=1
-BUILD_INTERACTIVE=0
-```
+* wget
+* make
+* tar
+* perl
+* makedepend
+* autoconf
+* autoreconf
 
 ## License
 
-The MIT License (MIT) Copyright (c) 2016 Bertrand Martel
+```
+Copyright (C) 2016  Bertrand Martel
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 3
+of the License, or (at your option) any later version.
+
+Foobar is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+```
