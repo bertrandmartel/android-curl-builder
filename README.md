@@ -58,7 +58,7 @@ The following libraries are cross compiled for Android platform :
 
 ## Troubleshoot
 
-If you have any troubles / questions, please create <a href="https://github.com/akinaru/android-curl-builder/issues/new">an issue</a>
+If you have any troubles / questions, please create <a href="https://github.com/bertrandmartel/android-curl-builder/issues/new">an issue</a>
 
 ## License
 
